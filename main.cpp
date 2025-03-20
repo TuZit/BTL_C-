@@ -9,19 +9,6 @@
 const int MAX_USERS = 100;
 using namespace std;
 
-void example()
-{
-    // Create an OTP object
-    char base32_secret[] = "JBSWY3DPEHPK3PXP";      // Base32 encoded secret key
-    OTPData *data = nullptr;                        // Use OTPData directly
-    COTP::OTP otp(data, base32_secret, nullptr, 6); // Use nullptr for default SHA1 algorithm
-
-    // Generate an OTP
-    char output[7]; // 6 digits + null terminator
-    otp.generate(time(nullptr), output);
-    std::cout << "Generated OTP: " << output << std::endl;
-}
-
 // Lớp User
 class User
 {
@@ -190,9 +177,9 @@ void changePassword(vector<User> &users, User *currentUser)
 // Sinh và xác nhận OTP
 bool verifyOTP(string changes)
 {
-    char base32_secret[] = "JBSWY3DPEHPK3PXP";
-    OTPData *data = nullptr;
-    COTP::OTP otp(data, base32_secret, nullptr, 6);
+    char base32_secret[] = "JBSWY3DPEHPK3PXP";      // Base32 encoded secret key
+    OTPData *data = nullptr;                        // Use OTPData directly
+    COTP::OTP otp(data, base32_secret, nullptr, 6); // Use nullptr for default SHA1 algorithm
 
     // Sinh OTP với input là thời gian hiện tại (giả lập)
     char otp_output[7];                      // Buffer cho 6 chữ số + null terminator
