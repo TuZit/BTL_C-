@@ -3,11 +3,13 @@
   "configurations": [
     {
       "name": "C/C++ Runner: Debug Session",
-      "type": "lldb",
+      "type": "cppvsdbg",
       "request": "launch",
       "args": [],
-      "cwd": "/Users/admin/Desktop/shibaa/BTL",
-      "program": "/Users/admin/Desktop/shibaa/BTL/build/Debug/outDebug"
+      "stopAtEntry": false,
+      "console": "externalTerminal",
+      "cwd": "c:/Users/TU ANH DEP ZAI/Desktop/shibaa/BTL_C-",
+      "program": "c:/Users/TU ANH DEP ZAI/Desktop/shibaa/BTL_C-/build/Debug/outDebug"
     }
   ]
 }
