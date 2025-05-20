@@ -12,10 +12,11 @@ Xây dựng một chương trình quản lý ví điện tử cho phép người
 
 ## 2. Thành viên tham gia và phân công công việc
 
-| Họ và tên      |  MSSV      | Công việc phụ trách                                                                 |
-|----------------|----------- |------------------------------------------------------------------------------------|
-| Nguyễn Tú Anh  | K24DTCN502 | Thiết kế class User, Wallet, Transaction; xử lý đăng ký, đăng nhập, đổi mật khẩu   |
-|----------------|----------- |------------------------------------------------------------------------------------|
+| Họ và tên      |  MSSV      | Công việc phụ trách                                                                     |
+|----------------|----------- |-----------------------------------------------------------------------------------------|
+| Nguyễn Tú Anh  | K24DTCN502 | Thiết kế xử lý chức năng Admin/User; xử lý đăng ký/đăng nhập, đổi mật khẩu, transaction |
+|                |            | Xử lý lưu/đọc dữ liệu JSON, OTP, giao diện menu, kiểm thử và hoàn thiện báo cáo         |
+|----------------|----------- |-----------------------------------------------------------------------------------------|
 
 ---
 
@@ -62,18 +63,19 @@ Xây dựng một chương trình quản lý ví điện tử cho phép người
 ## 4. Hướng dẫn cài đặt, dịch và chạy chương trình
 
 ### 4.1. Yêu cầu
-- **Hệ điều hành:** Windows, Linux hoặc MacOS
+- **Hệ điều hành:** Windows
 - **Trình biên dịch:** g++ (MinGW, MSYS2, hoặc tương đương)
 - **Thư viện ngoài:** [nlohmann/json](https://github.com/nlohmann/json) (đã kèm file `json.hpp`)
 
 ### 4.2. Tải chương trình
 - Clone git repository: [github](https://github.com/TuZit/BTL_C-.git).
 
-### 4.3. Dịch chương trình
+### 4.3. Chạy chương trình
+- Mở file `main.cpp` với Visual Studio Code.
+- Nhấn tổ hợp phím: F5
 - Mở terminal/cmd tại thư mục dự án.
-- Chạy lệnh:
 
-- Thực hiện các thao tác theo menu hướng dẫn trên màn hình:
+- Thực hiện các thao tác theo menu hướng dẫn trên terminal:
 - Đăng ký, đăng nhập
 - Quản lý ví, chuyển điểm
 - Xem lịch sử giao dịch
