@@ -1,8 +1,0 @@
-UID5422|tuzit|1234_hashed|nguyen tu zit|0|0
-UID5186|admin|fnr8G4Mb_hashed||0|0
-UID1639|huhu|shiba_hashed||0|0
-UID1397|tutu|u_hashed|nguyen van a|0|0
-UID4904|kk|45_hashed|nguyen van b|0|0
-UID1848|adii|zA4tWD9A_hashed||0|0
-UID7381|iiôi|ecec_hashed|fdskl sdfjl|0|0
-UID6841|anh_tu|anh_tuu_hashed|anh tu nguyen|0|0
