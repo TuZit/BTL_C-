@@ -72,29 +72,31 @@ Xây dựng một chương trình quản lý ví điện tử cho phép người
 
 ### 4.3. Chạy chương trình
 - Mở file `main.cpp` với Visual Studio Code.
+- Cài Visual Studio Code extension: [C/C++ Compile Run](https://marketplace.visualstudio.com/items?itemName=danielpinto8zz6.c-cpp-compile-run)
+    + Extension hỗ trợ compile và run code dễ dàng hơn.
 - Nhấn tổ hợp phím: F5
 - Mở terminal/cmd tại thư mục dự án.
 
 - Thực hiện các thao tác theo menu hướng dẫn trên terminal:
-- Đăng ký, đăng nhập
-- Quản lý ví, chuyển điểm
-- Xem lịch sử giao dịch
-- Cập nhật thông tin cá nhân
-- Quản lý tài khoản (admin)
+    + Đăng ký, đăng nhập
+    + Quản lý ví, chuyển điểm
+    + Xem lịch sử giao dịch
+    + Cập nhật thông tin cá nhân
+    + Quản lý tài khoản (admin)
 
 ---
 
 ## 5. Mô tả input/output, chú thích mã nguồn
 
 - **Input:**  
-- Nhập từ bàn phím: username, password, thông tin ví, số điểm chuyển, OTP, v.v.
+    + Nhập từ bàn phím: username, password, thông tin ví, số điểm chuyển, OTP, v.v.
 - **Output:**  
-- Hiển thị thông tin tài khoản, ví, giao dịch, thông báo thành công/thất bại, hướng dẫn thao tác.
+    + Hiển thị thông tin tài khoản, ví, giao dịch, thông báo thành công/thất bại, hướng dẫn thao tác.
 
 - **Chú thích mã nguồn:**  
-- Mỗi hàm đều có chú thích đầu hàm giải thích chức năng.
-- Các đoạn xử lý chính đều có comment giải thích.
-- Đầu file có mô tả ngắn về vai trò của file/module.
+    + Mỗi hàm đều có chú thích đầu hàm giải thích chức năng.
+    + Các đoạn xử lý chính đều có comment giải thích.
+    + Đầu file có mô tả ngắn về vai trò của file/module.
 
 ---
 
@@ -103,7 +105,7 @@ Xây dựng một chương trình quản lý ví điện tử cho phép người
 - [nlohmann/json - GitHub](https://github.com/nlohmann/json)
 - Tài liệu C++ cơ bản:  
 https://cplusplus.com/doc/tutorial/
-- Một số ý tưởng tham khảo từ StackOverflow và tài liệu môn học.
+- Một số ý tưởng tham khảo từ StackOverflow, Copilot và tài liệu môn học.
 
 ---
 

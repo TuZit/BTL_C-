@@ -4,7 +4,9 @@
     "cstdlib": "cpp",
     "sstream": "cpp",
     "limits": "cpp",
-    "cstdint": "cpp"
+    "cstdint": "cpp",
+    "ostream": "cpp",
+    "random": "cpp"
   },
   "C_Cpp_Runner.cCompilerPath": "gcc",
   "C_Cpp_Runner.cppCompilerPath": "g++",

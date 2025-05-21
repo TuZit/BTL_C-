@@ -20,6 +20,11 @@ enum Role
     USER
 };
 
+/**
+ * Định nghĩa class Wallet đại diện cho một ví điện tử của người dùng.
+ *
+ * Mỗi ví có ID, tên và số dư. Hỗ trợ tạo ví mới và hiển thị thông tin ví.
+ */
 class Wallet
 {
 public:
@@ -27,6 +32,11 @@ public:
     string walletName;
     int balance;
 
+    /**
+     * Khởi tạo một ví mới với tên và số dư ban đầu.
+     * @param name Tên ví
+     * @param initialBalance Số dư khởi tạo (mặc định 0)
+     */
     Wallet(string name, int initialBalance = 0)
     {
         walletID = generateWalletID();
@@ -34,6 +44,9 @@ public:
         balance = initialBalance;
     }
 
+    /**
+     * Hiển thị thông tin ví ra màn hình.
+     */
     void display() const
     {
         cout << "       Wallet ID: " << walletID << ", Name: " << walletName
@@ -41,12 +54,21 @@ public:
     }
 
 private:
+    /**
+     * Sinh mã ví ngẫu nhiên.
+     * @return Chuỗi mã ví
+     */
     string generateWalletID()
     {
         return "WID" + to_string(rand() % 10000);
     }
 };
 
+/**
+ * Định nghĩa class Transaction đại diện cho một giao dịch chuyển điểm.
+ *
+ * Lưu thông tin ví nguồn, ví đích, số điểm và thời gian giao dịch.
+ */
 class Transaction
 {
 public:
@@ -55,6 +77,12 @@ public:
     int amount;
     string timestamp;
 
+    /**
+     * Khởi tạo một giao dịch mới.
+     * @param fromID Ví nguồn
+     * @param toID Ví đích
+     * @param amt Số điểm chuyển
+     */
     Transaction(string fromID, string toID, int amt)
     {
         fromWalletID = fromID;
@@ -63,6 +91,9 @@ public:
         timestamp = generateTimestamp();
     }
 
+    /**
+     * Hiển thị thông tin giao dịch ra màn hình.
+     */
     void display() const
     {
         cout << "From: " << fromWalletID << ", To: " << toWalletID
@@ -70,6 +101,10 @@ public:
     }
 
 private:
+    /**
+     * Sinh chuỗi thời gian hiện tại.
+     * @return Chuỗi thời gian
+     */
     string generateTimestamp()
     {
         time_t now = time(0);
@@ -77,7 +112,12 @@ private:
         return string(dt);
     }
 };
-// Lớp User
+
+/**
+ * Định nghĩa class User đại diện cho một người dùng hệ thống.
+ *
+ * Lưu thông tin tài khoản, ví, giao dịch, vai trò và trạng thái mật khẩu.
+ */
 class User
 {
 public:
@@ -92,6 +132,16 @@ public:
     vector<Transaction> transactions;
     bool isHashed;
 
+    /**
+     * Khởi tạo một user mới.
+     * @param uname Tên đăng nhập
+     * @param pwd Mật khẩu (có thể đã hash)
+     * @param fname Họ tên
+     * @param userRole Vai trò
+     * @param autoGen Có phải mật khẩu tự động không
+     * @param pts Số điểm ban đầu
+     * @param isHashed_ Mật khẩu đã hash chưa
+     */
     User(string uname, string pwd, string fname, Role userRole = USER, bool autoGen = false, int pts = 10, bool isHashed_ = true)
     {
         isHashed = isHashed_;
@@ -106,6 +156,9 @@ public:
         wallets.push_back(Wallet("Main Wallet", pts));
     }
 
+    /**
+     * Hiển thị thông tin user ra màn hình.
+     */
     void display() const
     {
         cout << "ID: " << userID << ", Username: " << username
@@ -118,18 +171,31 @@ public:
         }
     }
 
+    /**
+     * Hàm giả lập băm mật khẩu.
+     * @param pwd Mật khẩu gốc
+     * @return Chuỗi mật khẩu đã băm
+     */
     string hashPassword(string pwd)
     {
         return pwd + "_hashed"; // Giả lập băm
     }
 
 private:
+    /**
+     * Sinh mã người dùng ngẫu nhiên.
+     * @return Chuỗi mã user
+     */
     string generateUserID()
     {
         return "UID" + to_string(rand() % 10000);
     }
 };
-// Sinh mật khẩu ngẫu nhiên
+
+/**
+ * Sinh mật khẩu ngẫu nhiên gồm 8 ký tự.
+ * @return Chuỗi mật khẩu ngẫu nhiên
+ */
 string generatePassword()
 {
     string chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
@@ -141,7 +207,11 @@ string generatePassword()
     return pwd;
 }
 
-// Lưu dữ liệu vào file
+/**
+ * Lưu toàn bộ danh sách user vào file users.json.
+ *
+ * @param users Danh sách user cần lưu
+ */
 void saveUsers(const vector<User> &users)
 {
     json jsonData;
@@ -186,7 +256,7 @@ void saveUsers(const vector<User> &users)
     ofstream file("users.json");
     if (file.is_open())
     {
-        file << jsonData.dump(4); // Lưu với định dạng đẹp (indent = 4 spaces)
+        file << jsonData.dump(4); // Lưu với định dạng indent = 4 spaces
         file.close();
         cout << "Data saved to users.json successfully!" << endl;
     }
@@ -195,7 +265,12 @@ void saveUsers(const vector<User> &users)
         cout << "Error saving to users.json!" << endl;
     }
 }
-// Đọc dữ liệu từ file
+
+/**
+ * Đọc danh sách user từ file users.json.
+ *
+ * @return Danh sách user đã đọc từ file
+ */
 vector<User> loadUsers()
 {
     vector<User> users;
@@ -254,7 +329,13 @@ vector<User> loadUsers()
     file.close();
     return users;
 }
-// Đăng ký tài khoản
+
+/**
+ * Đăng ký tài khoản mới (user hoặc admin).
+ *
+ * @param users Danh sách user hiện tại (tham chiếu)
+ * @param isAdmin Đăng ký admin hay user thường (mặc định là user)
+ */
 void registerUser(vector<User> &users, bool isAdmin = false)
 {
     string username, password, fullName;
@@ -293,7 +374,13 @@ void registerUser(vector<User> &users, bool isAdmin = false)
     cout << "User registered successfully!" << endl;
     newUser.display();
 }
-// Thay đổi mật khẩu
+
+/**
+ * Đổi mật khẩu cho user hiện tại.
+ *
+ * @param users Danh sách user (tham chiếu)
+ * @param currentUser Con trỏ tới user hiện tại
+ */
 void changePassword(vector<User> &users, User *currentUser)
 {
     string newPassword;
@@ -306,7 +393,12 @@ void changePassword(vector<User> &users, User *currentUser)
     cout << "Password changed successfully!" << endl;
 }
 
-// Cập nhật thông tin cá nhân
+/**
+ * Cập nhật thông tin cá nhân (tên, mật khẩu) của user.
+ *
+ * @param users Danh sách user (tham chiếu)
+ * @param currentUser Con trỏ tới user hiện tại
+ */
 void updateProfile(vector<User> &users, User *currentUser)
 {
     cout << "Current profile:\n";
@@ -352,7 +444,11 @@ void updateProfile(vector<User> &users, User *currentUser)
     }
 }
 
-// View profile
+/**
+ * Hiển thị thông tin chi tiết của user.
+ *
+ * @param user Con trỏ tới user cần xem
+ */
 void viewProfile(const User *user)
 {
     cout << "===== User Profile =====" << endl;
@@ -383,7 +479,12 @@ void viewProfile(const User *user)
     cout << "=======================" << endl;
 }
 
-// Đăng nhập
+/**
+ * Đăng nhập hệ thống.
+ *
+ * @param users Danh sách user (tham chiếu)
+ * @return Con trỏ tới user nếu đăng nhập thành công, nullptr nếu thất bại
+ */
 User *login(vector<User> &users)
 {
     string username, password;
@@ -419,6 +520,11 @@ User *login(vector<User> &users)
     return nullptr;
 }
 
+/**
+ * Hiển thị danh sách tất cả user (dành cho admin).
+ *
+ * @param users Danh sách user
+ */
 void viewUserList(const vector<User> &users)
 {
     cout << "User List:\n";
@@ -428,12 +534,22 @@ void viewUserList(const vector<User> &users)
     }
 }
 
+/**
+ * Admin tạo tài khoản user mới.
+ *
+ * @param users Danh sách user (tham chiếu)
+ */
 void createNewAccount(vector<User> &users)
 {
     cout << "Admin: Creating a new account.\n";
     registerUser(users, false);
 }
 
+/**
+ * Admin chỉnh sửa thông tin user.
+ *
+ * @param users Danh sách user (tham chiếu)
+ */
 void adjustUserInfo(vector<User> &users)
 {
     string username;
@@ -494,6 +610,14 @@ void adjustUserInfo(vector<User> &users)
     cout << "Username not found!" << endl;
 }
 
+/**
+ * Chuyển điểm giữa hai ví bất kỳ.
+ *
+ * @param users Danh sách user (tham chiếu)
+ * @param fromWalletID ID ví nguồn
+ * @param toWalletID ID ví đích
+ * @param amount Số điểm chuyển
+ */
 void transferPointsBetweenWallets(vector<User> &users, const string &fromWalletID, const string &toWalletID, int amount)
 {
     Wallet *fromWallet = nullptr;
@@ -552,7 +676,7 @@ void transferPointsBetweenWallets(vector<User> &users, const string &fromWalletI
         return;
     }
 
-    // Giao dịch (atomic)
+    // Giao dịch
     try
     {
         // Trừ số dư từ ví nguồn
@@ -579,6 +703,11 @@ void transferPointsBetweenWallets(vector<User> &users, const string &fromWalletI
     }
 }
 
+/**
+ * Hiển thị lịch sử giao dịch của user.
+ *
+ * @param user User cần xem lịch sử
+ */
 void viewTransactionHistory(const User &user)
 {
     if (user.transactions.empty())
@@ -593,12 +722,24 @@ void viewTransactionHistory(const User &user)
     }
 }
 
+/**
+ * Tạo ví mới cho user.
+ *
+ * @param user User cần tạo ví (tham chiếu)
+ * @param walletName Tên ví mới
+ */
 void createWallet(User &user, const string &walletName)
 {
     user.wallets.push_back(Wallet(walletName));
     cout << "Wallet created successfully!" << endl;
 }
 
+/**
+ * Hàm main: giao diện menu, điều phối các chức năng chính của chương trình.
+ *
+ * Nhận input từ bàn phím, gọi các hàm xử lý tương ứng.
+ * @return 0 nếu kết thúc chương trình
+ */
 int main()
 {
     srand(time(0));
